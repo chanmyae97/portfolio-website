@@ -1,0 +1,190 @@
+.theme-toggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.dark .theme-toggle:hover {
+  /* Removed box-shadow and replaced with a subtle glow effect */
+  filter: brightness(1.2);
+}
+
+.icon-container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animation for light theme icon */
+.icon-container.light i {
+  color: #fbbf24;
+  animation: glow 2s infinite alternate;
+}
+
+/* Animation for dark theme icon */
+.icon-container.dark i {
+  color: #64748b;
+  transition: color 0.5s ease;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px rgba(251, 191, 36, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.9),
+      0 0 20px rgba(251, 191, 36, 0.4);
+  }
+}
+
+/* Lightbulb base */
+.bulb-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 6px;
+  background-color: #94a3b8; /* Slate gray for base */
+  border-radius: 0 0 3px 3px;
+  transition: all 0.5s ease;
+}
+
+/* Lightbulb glass */
+.bulb-glass {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 18px;
+  background-color: rgba(226, 232, 240, 0.7); /* Translucent glass */
+  border-radius: 50% 50% 10% 10%;
+  transition: all 0.5s ease;
+}
+
+/* Lightbulb filament */
+.filament {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 10px;
+  border: 1px solid #94a3b8;
+  border-radius: 40% 40% 0 0;
+  border-bottom: none;
+  opacity: 0.7;
+  transition: all 0.5s ease;
+}
+
+/* Glow effect */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(
+    circle,
+    rgba(251, 191, 36, 0.8) 0%,
+    rgba(251, 191, 36, 0) 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+/* Enhanced hover effects */
+.theme-toggle:hover .icon-container.light .glow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.3);
+  background: radial-gradient(
+    circle,
+    rgba(251, 191, 36, 0.9) 0%,
+    rgba(251, 191, 36, 0) 80%
+  );
+  animation: pulse 1.5s infinite alternate;
+}
+
+.theme-toggle:hover .icon-container.light i {
+  animation: glow 1.2s infinite alternate;
+}
+
+.theme-toggle:hover .icon-container.dark i {
+  color: #94a3b8;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle:hover .icon-container.dark .bulb-glass {
+  background-color: rgba(226, 232, 240, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px rgba(251, 191, 36, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.9),
+      0 0 20px rgba(251, 191, 36, 0.6), 0 0 25px rgba(251, 191, 36, 0.4);
+  }
+}
+
+/* Light theme (on) styles */
+.icon-container.light .bulb-glass {
+  background-color: rgba(251, 191, 36, 0.9); /* Yellow for lit bulb */
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.7);
+}
+
+.icon-container.light .filament {
+  border-color: #fbbf24;
+  opacity: 1;
+}
+
+.icon-container.light .glow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Dark theme (off) styles */
+.icon-container.dark .bulb-glass {
+  background-color: rgba(226, 232, 240, 0.3); /* Darker glass when off */
+  box-shadow: none;
+}
+
+.icon-container.dark .filament {
+  border-color: #64748b;
+  opacity: 0.5;
+}
+
+.icon-container.dark .glow {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+}
