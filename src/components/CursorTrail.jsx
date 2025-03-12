@@ -10,26 +10,28 @@ const CursorTrail = () => {
 
   const params = {
     pointsNumber: 40,
-    widthFactor: 0.3,
+    widthFactor: 0.15,
     mouseThreshold: 0.6,
     spring: 0.4,
     friction: 0.5,
   };
 
-  // Function to generate random color based on theme
+  // Function to generate random copper colors based on theme
   const getRandomColor = () => {
     const isDarkMode = document.documentElement.classList.contains("dark");
 
     if (isDarkMode) {
       // Silver colors for dark mode
-      const baseValue = Math.floor(Math.random() * 40) + 180; // Range: 180-220
-      return `rgb(${baseValue}, ${baseValue}, ${baseValue})`;
+      const r = Math.floor(Math.random() * 40) + 192; // Range: 192-232
+      const g = r; // Match red component for silver
+      const b = r; // Match red component for silver
+      return `rgb(${r}, ${g}, ${b})`;
     } else {
-      // Gold gradient colors for light mode
-      const hue = Math.floor(Math.random() * 20) + 40; // Range: 40-60 (gold hues)
-      const saturation = Math.floor(Math.random() * 20) + 70; // Range: 70-90%
-      const lightness = Math.floor(Math.random() * 20) + 60; // Range: 60-80%
-      return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      // Lighter copper colors for light mode
+      const r = Math.floor(Math.random() * 30) + 184; // Range: 184-214 (copper)
+      const g = Math.floor(Math.random() * 25) + 115; // Range: 115-140
+      const b = Math.floor(Math.random() * 20) + 51; // Range: 51-71
+      return `rgb(${r}, ${g}, ${b})`;
     }
   };
 
@@ -96,44 +98,35 @@ const CursorTrail = () => {
         ctx.lineWidth = params.widthFactor * (params.pointsNumber - i);
         ctx.strokeStyle = getRandomColor();
         ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(xc, yc);
       }
 
-      ctx.lineTo(trail[trail.length - 1].x, trail[trail.length - 1].y);
-      ctx.stroke();
-
-      window.requestAnimationFrame(update);
+      requestAnimationFrame(update);
     };
 
     // Event listeners
-    const handleClick = (e) => updateMousePosition(e.pageX, e.pageY);
     const handleMouseMove = (e) => {
       mouseMovedRef.current = true;
-      updateMousePosition(e.pageX, e.pageY);
+      updateMousePosition(e.clientX, e.clientY);
     };
-    const handleTouchMove = (e) => {
-      mouseMovedRef.current = true;
-      updateMousePosition(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    const handleResize = () => {
+      setupCanvas();
     };
 
     // Initialize
     setupCanvas();
-    window.addEventListener("resize", setupCanvas);
-    window.addEventListener("click", handleClick);
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchmove", handleTouchMove);
-
-    // Start animation
-    const animationId = window.requestAnimationFrame(update);
+    window.addEventListener("resize", handleResize);
+    requestAnimationFrame(update);
 
     // Cleanup
     return () => {
-      window.removeEventListener("resize", setupCanvas);
-      window.removeEventListener("click", handleClick);
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", handleResize);
     };
-  }, []); // Empty dependency array since we don't have any dependencies
+  }, []);
 
   return (
     <canvas
