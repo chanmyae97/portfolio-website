@@ -3,11 +3,13 @@
 
 body {
   background-color: white;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #1a202c; /* Dark text for light mode */
 }
 
 body.dark {
   background-color: #000000; /* pure black background */
+  color: #e2e8f0; /* Light gray text for better readability in dark mode */
 }
 
 body::before {

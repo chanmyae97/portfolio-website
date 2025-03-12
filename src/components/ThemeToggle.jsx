@@ -14,7 +14,7 @@ const ThemeToggle = () => {
   useEffect(() => {
     const root = document.documentElement;
     const body = document.body;
-    
+
     if (theme === "dark") {
       root.classList.add("dark");
       body.classList.add("dark");
@@ -22,7 +22,7 @@ const ThemeToggle = () => {
       root.classList.remove("dark");
       body.classList.remove("dark");
     }
-    
+
     // Save theme preference to localStorage
     localStorage.setItem("theme", theme);
   }, [theme]);
@@ -36,7 +36,7 @@ const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       className="theme-toggle p-2 rounded-full bg-gray-200 dark:bg-gray-800 transition-colors duration-300"
-      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     >
       <div className={`icon-container ${theme}`}>
         {theme === "light" ? (

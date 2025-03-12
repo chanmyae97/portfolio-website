@@ -1,10 +1,14 @@
+import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header.jsx";
+import ThemeToggle from "./components/ThemeToggle";
+import CursorTrail from "./components/CursorTrail";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
       <Header />
+      <CursorTrail />
     </>
   );
 }
