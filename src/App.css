@@ -5,30 +5,26 @@ body {
   background-color: #f5f5f5;
   transition: background-color 0.3s ease, color 0.3s ease;
   color: #1a202c; /* Dark text for light mode */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+:root {
   cursor: none;
 }
 
-body * {
+/* Hide cursor on all interactive elements */
+a, button, input, select, textarea,
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
   cursor: none;
 }
 
-body::after {
-  content: "";
-  width: 8px;
-  height: 8px;
-  background: #1a202c;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 0 0 1px rgba(26, 32, 44, 0.3);
-}
-
-body.dark::after {
-  background: #e2e8f0;
-  box-shadow: 0 0 0 1px rgba(226, 232, 240, 0.3);
+/* Hide cursor on hover states */
+*:hover {
+  cursor: none;
 }
 
 body.dark {

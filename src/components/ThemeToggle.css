@@ -7,11 +7,12 @@
   align-items: center;
   overflow: hidden;
   transition: transform 0.3s ease;
+  cursor: none;
 }
 
 .theme-toggle:hover {
   transform: scale(1.05);
-  cursor: pointer;
+  cursor: none;
 }
 
 .dark .theme-toggle:hover {
