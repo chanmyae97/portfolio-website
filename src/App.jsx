@@ -1,9 +1,8 @@
-import { useState } from "react";
 import "./App.css";
-import ThemeToggle from "./components/ThemeToggle";
 import CursorTrail from "./components/CursorTrail";
 import Header from "./components/Header";
-import GlitchCursor from './components/GlitchCursor';
+import GlitchCursor from "./components/GlitchCursor";
+import Map from "./components/Map";
 
 function App() {
   return (
@@ -11,6 +10,7 @@ function App() {
       <Header />
       <CursorTrail />
       <GlitchCursor />
+      <Map />
     </>
   );
 }
