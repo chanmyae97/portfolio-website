@@ -62,16 +62,15 @@ const Map = () => {
 
   return (
     <div className="flex justify-center items-center p-4">
-      <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-4">
+      <div className="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1">
         <div className="relative">
-          {/* Map container with adjusted height */}
           <div
             ref={mapContainer}
-            className="w-full h-[400px] rounded-lg overflow-hidden border border-gray-300"
+            className="w-full h-[400px] rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-inner"
           />
 
           <select
-            className="absolute top-2 left-2 z-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 text-sm shadow-sm"
+            className="absolute top-4 left-4 z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm shadow-lg transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
             value={style}
             onChange={handleStyleChange}
           >

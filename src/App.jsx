@@ -10,7 +10,7 @@ function App() {
       <Header />
       <CursorTrail />
       <GlitchCursor />
-      <Map />
+      {/* <Map /> */}
     </>
   );
 }
